@@ -1,0 +1,14 @@
+.gif-item {
+  float: left;
+}
+
+.search-container {
+  margin: 0 auto;
+  width: 640px;
+}
+
+.btn {
+  border-style: solid;
+  border-width: 2px;
+  border-color: black;
+}

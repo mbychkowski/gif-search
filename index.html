@@ -5,28 +5,57 @@
   <meta charset="utf-8">
   <title>Gif Search Recipes</title>
 
+  <!-- reset -->
+  <link rel="stylesheet" href="assets/styles/reset.css">
+
   <!-- jQuery -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
+  <!-- bootstrap 4.0 -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
+
+  <!-- custom styles -->
+  <link rel="stylesheet" href="assets/styles/styles.css">
 </head>
 
 <body>
-  <h1>Recipe GIF search</h1>
 
-  <form class="" action="index.html" method="post">
-    Search for recipe:
-    <span>
-      <input id="recipe-search" type="text" name="recipe" value="Chicken tikka masala">
-      <button id="recipe-click" type="button" name="button">Search</button>
-    </span>
+  <div class="jumbotron text-center bg-white">
+    <h1 class="m-2">Recipe GIF search</h1>
+    <div class="form-group">
+      <div class="search-container">
+        <input id="recipe-search" class="form-control m-2" type="text" placeholder="insert main ingredient for best results">
+        <span>
+          <button id="recipe-click" type="button" class="btn m-2">Search</button>
+          <button id="add-to-favs" type="button" class="btn m-2">Add to favorite</button>
+        </span>
 
+      </div>
+    </div>
+  </div>
 
-  </form>
+  <div class="row">
+    <div class="col-sm-9">
+      <div id="gif-results">
 
-  <div id="gif-results"></div>
+      </div>
+    </div>
+
+    <div class="col-sm-3">
+      <h2>Favorites</h2>
+      <div id="fav-topics" class="">
+
+      </div>
+    </div>
+  </div>
 
   <!-- JavaScript -->
+  <script src="assets/js/topics.js"></script>
   <script src="assets/js/script.js"></script>
+
+  <!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4" crossorigin="anonymous"></script> -->
 
 </body>
 

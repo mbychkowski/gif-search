@@ -1,5 +1,5 @@
-var recipe;
-var defaultRecipe = 'cupcakes'
+var ingredient;
+var defaultIngredient = 'muffin'
 
 //---
 // initial favorite searches
@@ -15,17 +15,16 @@ addClickEvent();
 //---
 // Search using favorites
 $('#add-to-favs').on('click', function() {
-  recipe = $('#recipe-search').val().toLowerCase().trim();
-  console.log(recipe);
+  ingredient = $('#recipe-search').val().toLowerCase().trim();
 
-  if (topics.includes(recipe)) {
+  if (topics.includes(ingredient)) {
     // do nothing
-  } else if (recipe === '') {
+  } else if (ingredient === '') {
     // do nothing
   } else {
-    topics.push(recipe);
+    topics.push(ingredient);
 
-    makeFavBtn(recipe);
+    makeFavBtn(ingredient);
 
     addClickEvent();
   }
@@ -39,13 +38,13 @@ $('#recipe-click').on('click', function() {
 
   removeGifs();
 
-  recipe = $('#recipe-search').val().toLowerCase().trim();
+  ingredient = $('#recipe-search').val().toLowerCase().trim();
 
-  if (recipe === '') {
-    recipe = defaultRecipe;
+  if (ingredient === '') {
+    ingredient = defaultIngredient;
   }
 
-  giphySearch(recipe);
+  giphySearch(ingredient);
 });
 //---
 
@@ -64,7 +63,7 @@ function makeFavBtn(topic) {
 
   topicButton.text(topic);
   topicButton.attr('data-food', topic);
-  topicButton.addClass('topic-button m-1');
+  topicButton.addClass('topic-button grey-text m-1');
   $('#fav-topics').append(topicButton);
 
   // var topicClose = $("<button>");
@@ -80,38 +79,19 @@ function addClickEvent() {
   $('.topic-button').on('click', function() {
     removeGifs();
 
-    recipe = $(this).attr('data-food');
+    ingredient = $(this).attr('data-food');
 
-    giphySearch(recipe);
-  });
-}
-
-function animateGifs() {
-  $(".gif").on("click", function() {
-    var state = $(this).attr('data-state');
-
-    var still = $(this).attr('data-still');
-    var animate = $(this).attr('data-animate');
-
-    if (state === 'still') {
-      $(this).attr('src', animate);
-      $(this).attr('data-state', 'animate');
-
-    } else {
-      $(this).attr('src', still);
-      $(this).attr('data-state', 'still');
-    }
-    console.log($(this).attr('data-state'));
+    giphySearch(ingredient);
   });
 }
 
 // API interaction
-function giphySearch(recipe) {
-  recipe = recipe.replace(/\s/gi, '+');
+function giphySearch(ingredient) {
+  ingredient = ingredient.replace(/\s/gi, '+');
 
   // Giphy API
   var queryURL = 'https://api.giphy.com/v1/gifs/search?q=recipe+' +
-    recipe +
+    ingredient +
     '&limit=20' +
     '&rating=g' +
     '&api_key=dc6zaTOxFJmzC';
@@ -137,15 +117,24 @@ function giphySearch(recipe) {
       gifImage.attr('data-still', results[i].images.fixed_height_still.url)
       gifImage.attr('data-animate', results[i].images.fixed_height.url)
       gifImage.attr('data-state', 'still')
-
       gifImage.addClass('gif');
+
+      // Get the image and insert it inside the modal
+      gifImage.on('click', function() {
+        $('#my-modal').addClass('modal');
+        $('#modal-img').attr('src', $(this).attr('data-animate'));
+      })
 
       // Append the gifImage we created to the "gifDiv" div we created
       gifDiv.append(gifImage);
 
       $('#gif-results').append(gifDiv);
     }
-    animateGifs();
-    console.log(results);
+
+    // close modal
+    $('.close').on('click', function() {
+      $('#my-modal').removeClass('modal');
+      $('#modal-img').attr('src', '');
+    })
   });
 }

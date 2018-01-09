@@ -49,7 +49,7 @@ $('#recipe-click').on('click', function() {
 //---
 
 //------------------------------------------------------------------------------
-// functions
+// v functions v
 //------------------------------------------------------------------------------
 
 // remove gifs
@@ -65,13 +65,6 @@ function makeFavBtn(topic) {
   topicButton.attr('data-food', topic);
   topicButton.addClass('topic-button grey-text m-1');
   $('#fav-topics').append(topicButton);
-
-  // var topicClose = $("<button>");
-  //
-  // topicClose.addClass("close-box");
-  // topicClose.append("x");
-  //
-  // topicButton = topicButton.prepend(topicClose);
 }
 
 // add click event to favorite buttons
@@ -95,7 +88,6 @@ function giphySearch(ingredient) {
     '&limit=20' +
     '&rating=g' +
     '&api_key=dc6zaTOxFJmzC';
-
 
   $.ajax({
     url: queryURL,
